@@ -22,9 +22,9 @@ keyboard.keymap = (
     (
         ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
         TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
-        CAPS,  A,   S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
+        CAPS,  A, L5S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
         LSFT4, Z,   X,   C,   V, L3B,   N,   M, ',', '.', '/',         RSFT4,
-        LCTRL, LGUI, LALT,          SPACE,            RALT, MENU,  L1, RCTRL
+        LCTRL, LGUI, LALT,          SPACE,            RALT, MENU, RCTRL,  L1
     ),
 
     # layer 1
@@ -32,8 +32,8 @@ keyboard.keymap = (
         '`',  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12, DEL,
         ___, ___,  UP, ___, ___, ___, ___, ___, ___, ___,SUSPEND,___,___,___,
         ___,LEFT,DOWN,RIGHT,___, ___, ___, ___, ___, ___, ___, ___,      ___,
-        ___, ___, ___, ___, ___,BOOT, ___,MACRO(0), ___, ___, ___,       ___,
-        ___, ___, ___,                ___,               ___, ___, ___,  ___
+        ___, ___, ___, ___, ___,BOOT, ___,MACRO(0), ___, ___, UP,       ___,
+        ___, ___, ___,                ___,               LEFT, DOWN, RIGHT,  ___
     ),
 
     # layer 2
@@ -106,7 +106,13 @@ def macro_handler(dev, n, is_down):
         dev.send_text('You released macro #{}\n'.format(n))
 
 def pairs_handler(dev, n):
-    dev.send_text('You just triggered pair keys #{}\n'.format(n))
+    #dev.send_text('You just triggered pair keys #{}\n'.format(n))
+    if n == 0:
+        dev.send_text('ls -alh --color\n')
+    elif n == 1:
+        dev.send_text('du -sh *\n')
+    elif n == 2:
+        dev.send_text('ifconfig; ip addr')
 
 
 keyboard.macro_handler = macro_handler
@@ -119,7 +125,10 @@ keyboard.pairs_handler = pairs_handler
 # LCTRL(53)  LGUI(54)  LALT(55)               SPACE(56)          RALT(57)  MENU(58)  Fn(59)  RCTRL(60)
 
 # Pairs: J & K, U & I
-keyboard.pairs = [{35, 36}, {20, 19}]
+# 1. ls
+# 2. du
+# 3. ip
+keyboard.pairs = [{37, 30}, {31, 20}, {19, 17}, {35, 36}, {20, 19}]
 
 # keyboard.verbose = False
 

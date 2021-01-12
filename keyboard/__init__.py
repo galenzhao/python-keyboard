@@ -267,7 +267,7 @@ class Keyboard:
         address = _bleio.Address(uid, _bleio.Address.RANDOM_STATIC)
         try:
             self.ble._adapter.address = address
-            name = "PYKB {}".format(n)
+            name = "galen's PYKB {}".format(n)
             self.advertisement.complete_name = name
             self.ble.name = name
             self.ble_id = n

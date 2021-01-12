@@ -166,7 +166,8 @@ class Backlight:
             self.blackhole,
             self.pinwheel,
             self.beacon,
-            self.beacon2
+            self.beacon2,
+            self.flow
         )
         self.set_mode(6)
         self.enabled = False
@@ -222,6 +223,15 @@ class Backlight:
             self.set_mode(self.mode)
         else:
             self.off()
+
+    def flow(self):
+        i = self.n
+        self.pixel(i, 0xff, 0xff, 0xff)
+        self.pixel(i-1 if i-1>=0 else 63, 0, 0, 0)
+
+        self.update()
+        self.n = (i + 1) & 63
+        return True
 
     def mono(self):
         self.on(*hsv_to_rgb(*self.hsv))
