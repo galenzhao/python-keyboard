@@ -47,10 +47,10 @@ keyboard.keymap = (
 
     # layer 3
     (
-        BT_TOGGLE,BT1,BT2, BT3,BT4,BT5,BT6,BT7, BT8, BT9, BT0, ___, ___, ___,
+        BT_TOGGLE,BT1,BT2, BT3,BT4,BT5,BT6,BT7, BT8, BT9, BT0, VAL_RGB, RGB_VAL, ___,
         RGB_MOD, ___, ___, ___, ___, ___,___,USB_TOGGLE,___,___,___,___,___, ___,
         RGB_TOGGLE,HUE_RGB,RGB_HUE,SAT_RGB,RGB_SAT,___,___,___,___,___,___,___,      ___,
-        ___, ___, ___, ___, ___, ___, ___, ___,VAL_RGB,RGB_VAL, ___,           ___,
+        ___, ___, ___, ___, ___, ___, ___, ___,___,___, ___,           ___,
         ___, ___, ___,                ___,               ___, ___, ___,  ___
     ),
 
@@ -100,10 +100,18 @@ keyboard.profiles = {
 }
 
 def macro_handler(dev, n, is_down):
-    if is_down:
-        dev.send_text('You pressed macro #{}\n'.format(n))
-    else:
-        dev.send_text('You released macro #{}\n'.format(n))
+    if n == 2:
+        if is_down:
+            dev.backlight.set_brightness(0)
+
+    elif n == 3:
+        if is_down:
+            dev.backlight.set_brightness(255)
+
+    #if is_down:
+    #    dev.send_text('You pressed macro #{}\n'.format(n))
+    #else:
+    #    dev.send_text('You released macro #{}\n'.format(n))
 
 def pairs_handler(dev, n):
     #dev.send_text('You just triggered pair keys #{}\n'.format(n))
