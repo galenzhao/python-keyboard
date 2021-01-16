@@ -78,7 +78,17 @@ keyboard.keymap = (
 # Connection not in this map will use default keymap defined above.
 keyboard.profiles = {
     # For example, BT8 is connected to a Mac
-    "BT8": (
+    "USB": (
+        # layer 0
+        (
+            ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
+            TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
+            CAPS,  A,   S,   D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
+            LSHIFT,Z,   X,   C,   V,   B,   N,   M, ',', '.', '/',        RSHIFT,
+            LCTRL, LALT, LGUI,          SPACE,            MENU, RALT,  L1, RCTRL
+        ),
+    ),
+    "BT1": (
         # layer 0
         (
             ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
@@ -93,11 +103,29 @@ keyboard.profiles = {
             '`',  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12, DEL,
             ___, ___,  UP, ___, ___, ___, ___, ___, ___, ___,SUSPEND,___,___,___,
             ___,LEFT,DOWN,RIGHT,___, ___, ___, ___, ___, ___, ___, ___,      ___,
-            ___, ___, ___, ___, ___,BOOT, ___,MACRO(1), ___, ___, ___,       ___,
-            ___, ___, ___,                ___,               ___, ___, ___,  ___
+            ___, ___, ___, ___, ___,BOOT, ___,MACRO(1), ___, ___, UP,       ___,
+            ___, ___, ___,                ___,               LEFT, DOWN, RIGHT,  ___
         ),
     )
 }
+
+# add default keymap to profiles
+default_keymap_count = len(keyboard.keymap)
+for i in keyboard.profiles.keys():
+    profile_key_maps = keyboard.profiles.get(i)
+    profile_layer_count = len(profile_key_maps)
+
+    # insert default
+    keymap_profile = list(profile_key_maps)
+    for x in range(profile_layer_count, default_keymap_count):
+        default_keymap = keyboard.keymap[x]
+        keymap_profile.append(default_keymap)
+
+    keyboard.profiles[i] = tuple(keymap_profile)    
+
+
+#print(keyboard.profiles)
+
 
 def macro_handler(dev, n, is_down):
     if n == 2:
