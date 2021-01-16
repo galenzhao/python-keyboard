@@ -83,9 +83,9 @@ keyboard.profiles = {
         (
             ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
             TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
-            CAPS,  A,   S,   D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
-            LSHIFT,Z,   X,   C,   V,   B,   N,   M, ',', '.', '/',        RSHIFT,
-            LCTRL, LALT, LGUI,          SPACE,            MENU, RALT,  L1, RCTRL
+            CAPS,  A,   L5S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
+            LSHIFT,Z,   X,   C,   V,   L3B,   N,   M, ',', '.', '/',        RSHIFT,
+            LCTRL, LALT, LGUI,          SPACE,            MENU, RALT, RCTRL,  L1
         ),
     ),
     "BT1": (
@@ -93,9 +93,9 @@ keyboard.profiles = {
         (
             ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
             TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
-            CAPS,  A,   S,   D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
-            LSHIFT,Z,   X,   C,   V,   B,   N,   M, ',', '.', '/',        RSHIFT,
-            LCTRL, LALT, LGUI,          SPACE,            MENU, RALT,  L1, RCTRL
+            CAPS,  A,   L5S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
+            LSHIFT,Z,   X,   C,   V,   L3B,   N,   M, ',', '.', '/',        RSHIFT,
+            LCTRL, LALT, LGUI,          SPACE,            MENU, RALT, RCTRL,  L1
         ),
 
         # layer 1
