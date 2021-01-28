@@ -48,7 +48,7 @@ keyboard.keymap = (
     # layer 3
     (
         BT_TOGGLE,BT1,BT2, BT3,BT4,BT5,BT6,BT7, BT8, BT9, BT0, VAL_RGB, RGB_VAL, ___,
-        RGB_MOD, ___, ___, ___, ___, ___,___,USB_TOGGLE,___,___,___,___,___, ___,
+        RGB_MOD, ___, ___, ___, ___, ___,___,USB_TOGGLE,___,___,MACRO(4),MACRO(2),MACRO(3), ___,
         RGB_TOGGLE,HUE_RGB,RGB_HUE,SAT_RGB,RGB_SAT,___,___,___,___,___,___,___,      ___,
         ___, ___, ___, ___, ___, ___, ___, ___,___,___, ___,           ___,
         ___, ___, ___,                ___,               ___, ___, ___,  ___
@@ -136,6 +136,10 @@ def macro_handler(dev, n, is_down):
         if is_down:
             dev.backlight.set_brightness(255)
 
+    elif n == 4:
+        if is_down:
+            print('keyboard.battery.level #{}'.format(keyboard.battery.level))
+
     #if is_down:
     #    dev.send_text('You pressed macro #{}\n'.format(n))
     #else:
@@ -144,11 +148,11 @@ def macro_handler(dev, n, is_down):
 def pairs_handler(dev, n):
     #dev.send_text('You just triggered pair keys #{}\n'.format(n))
     if n == 0:
-        dev.send_text('ls -alh --color\n')
+        dev.send_text('ls -alh\n')
     elif n == 1:
-        dev.send_text('du -sh *\n')
+        dev.send_text('du -sh ./*\n')
     elif n == 2:
-        dev.send_text('ifconfig; ip addr')
+        dev.send_text('ifconfig')
 
 
 keyboard.macro_handler = macro_handler
