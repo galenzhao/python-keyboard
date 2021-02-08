@@ -1,6 +1,6 @@
 
 from keyboard import *
-
+import my_keymap
 
 keyboard = Keyboard()
 
@@ -17,85 +17,18 @@ L5S = LAYER_TAP(5, S)
 SCC = MODS_TAP(MODS(RCTRL), ';')
 SINS = MODS_KEY(MODS(SHIFT), INSERT)
 
-keyboard.keymap = (
-    # layer 0
-    (
-        ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
-        TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
-        CAPS,  A, L5S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
-        LSFT4, Z,   X,   C,   V, L3B,   N,   M, ',', '.', '/',         RSFT4,
-        LCTRL, LGUI, LALT,          SPACE,            RALT, MENU, RCTRL,  L1
-    ),
+if my_keymap.custom_keymap and len(my_keymap.custom_keymap) > 0:
+    keyboard.keymap = my_keymap.custom_keymap
 
-    # layer 1
-    (
-        '`',  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12, DEL,
-        ___, ___,  UP, ___, ___, ___, ___, ___, ___, ___,SUSPEND,___,___,___,
-        ___,LEFT,DOWN,RIGHT,___, ___, ___, ___, ___, ___, ___, ___,      ___,
-        ___, ___, ___, ___, ___,BOOT, ___,MACRO(0), ___, ___, UP,       ___,
-        ___, ___, ___,                ___,               LEFT, DOWN, RIGHT,  ___
-    ),
-
-    # layer 2
-    (
-        '`',  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12, DEL,
-        ___, ___, ___, ___, ___, ___,HOME,PGUP, ___, ___,SINS,AUDIO_VOL_DOWN,AUDIO_VOL_UP,AUDIO_MUTE,
-        ___, ___, ___, ___, ___, ___,LEFT,DOWN, UP,RIGHT, ___, ___,      ___,
-        ___, ___, ___, ___, ___, ___,PGDN,END, ___, ___, ___,           ___,
-        ___, ___, ___,                ___,               ___, ___, ___,  ___
-    ),
-
-    # layer 3
-    (
-        BT_TOGGLE,BT1,BT2, BT3,BT4,BT5,BT6,BT7, BT8, BT9, BT0, VAL_RGB, RGB_VAL, ___,
-        RGB_MOD, ___, ___, ___, ___, ___,___,USB_TOGGLE,___,___,MACRO(4),MACRO(2),MACRO(3), ___,
-        RGB_TOGGLE,HUE_RGB,RGB_HUE,SAT_RGB,RGB_SAT,___,___,___,___,___,___,___,      ___,
-        ___, ___, ___, ___, ___, ___, ___, ___,___,___, ___,           ___,
-        ___, ___, ___,                ___,               ___, ___, ___,  ___
-    ),
-
-    # layer 4
-    (
-        '`', ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
-        ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
-        ___, ___, ___,   D, ___, ___, ___, ___, ___, ___, ';', ___,      ___,
-        ___, ___, ___, ___, ___,   B, ___, ___, ___, ___, ___,           ___,
-        ___, ___, ___,                ___,               ___, ___, ___,  ___
-    ),
-
-    # layer 5
-    (
-        ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
-        ___, ___, ___, ___, ___, ___,MS_W_UP,MS_UL,MS_UP,MS_UR, ___, ___, ___, ___,
-        ___, ___, ___, ___, ___, ___,MS_BTN1,MS_LT,MS_DN,MS_RT,MS_BTN2, ___,      ___,
-        ___, ___, ___, ___, ___, ___,MS_W_DN,MS_DL,MS_DN,MS_DR, ___,           ___,
-        ___, ___, ___,                ___,               ___, ___, ___,  ___
-    ),
-)
-
-# Use different keymaps on different connections
-# Valid keys are "USB" and "BT0"-"BT9"
-# Connection not in this map will use default keymap defined above.
-keyboard.profiles = {
-    # For example, BT8 is connected to a Mac
-    "USB": (
+else:
+    keyboard.keymap = (
         # layer 0
         (
             ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
             TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
-            CAPS,  A,   L5S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
-            LSHIFT,Z,   X,   C,   V,   L3B,   N,   M, ',', '.', '/',        RSHIFT,
-            LCTRL, LALT, LGUI,          SPACE,            MENU, RALT, RCTRL,  L1
-        ),
-    ),
-    "BT1": (
-        # layer 0
-        (
-            ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
-            TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
-            CAPS,  A,   L5S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
-            LSHIFT,Z,   X,   C,   V,   L3B,   N,   M, ',', '.', '/',        RSHIFT,
-            LCTRL, LALT, LGUI,          SPACE,            MENU, RALT, RCTRL,  L1
+            CAPS,  A, L5S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
+            LSFT4, Z,   X,   C,   V, L3B,   N,   M, ',', '.', '/',         RSFT4,
+            LCTRL, LGUI, LALT,          SPACE,            RALT, MENU, RCTRL,  L1
         ),
 
         # layer 1
@@ -103,11 +36,85 @@ keyboard.profiles = {
             '`',  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12, DEL,
             ___, ___,  UP, ___, ___, ___, ___, ___, ___, ___,SUSPEND,___,___,___,
             ___,LEFT,DOWN,RIGHT,___, ___, ___, ___, ___, ___, ___, ___,      ___,
-            ___, ___, ___, ___, ___,BOOT, ___,MACRO(1), ___, ___, UP,       ___,
+            ___, ___, ___, ___, ___,BOOT, ___,MACRO(0), ___, ___, UP,       ___,
             ___, ___, ___,                ___,               LEFT, DOWN, RIGHT,  ___
         ),
+
+        # layer 2
+        (
+            '`',  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12, DEL,
+            ___, ___, ___, ___, ___, ___,HOME,PGUP, ___, ___,SINS,AUDIO_VOL_DOWN,AUDIO_VOL_UP,AUDIO_MUTE,
+            ___, ___, ___, ___, ___, ___,LEFT,DOWN, UP,RIGHT, ___, ___,      ___,
+            ___, ___, ___, ___, ___, ___,PGDN,END, ___, ___, ___,           ___,
+            ___, ___, ___,                ___,               ___, ___, ___,  ___
+        ),
+
+        # layer 3
+        (
+            BT_TOGGLE,BT1,BT2, BT3,BT4,BT5,BT6,BT7, BT8, BT9, BT0, VAL_RGB, RGB_VAL, ___,
+            RGB_MOD, ___, ___, ___, ___, ___,___,USB_TOGGLE,___,___,MACRO(4),MACRO(2),MACRO(3), ___,
+            RGB_TOGGLE,HUE_RGB,RGB_HUE,SAT_RGB,RGB_SAT,___,___,___,___,___,___,___,      ___,
+            ___, ___, ___, ___, ___, ___, ___, ___,___,___, ___,           ___,
+            ___, ___, ___,                ___,               ___, ___, ___,  ___
+        ),
+
+        # layer 4
+        (
+            '`', ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+            ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+            ___, ___, ___,   D, ___, ___, ___, ___, ___, ___, ';', ___,      ___,
+            ___, ___, ___, ___, ___,   B, ___, ___, ___, ___, ___,           ___,
+            ___, ___, ___,                ___,               ___, ___, ___,  ___
+        ),
+
+        # layer 5
+        (
+            ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
+            ___, ___, ___, ___, ___, ___,MS_W_UP,MS_UL,MS_UP,MS_UR, ___, ___, ___, ___,
+            ___, ___, ___, ___, ___, ___,MS_BTN1,MS_LT,MS_DN,MS_RT,MS_BTN2, ___,      ___,
+            ___, ___, ___, ___, ___, ___,MS_W_DN,MS_DL,MS_DN,MS_DR, ___,           ___,
+            ___, ___, ___,                ___,               ___, ___, ___,  ___
+        ),
     )
-}
+
+# Use different keymaps on different connections
+# Valid keys are "USB" and "BT0"-"BT9"
+# Connection not in this map will use default keymap defined above.
+if my_keymap.profiles and len(my_keymap.profiles) > 0:
+    keyboard.profiles = my_keymap.profiles
+else:    
+    keyboard.profiles = {
+        # For example, BT8 is connected to a Mac
+        "USB": (
+            # layer 0
+            (
+                ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
+                TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
+                CAPS,  A,   L5S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
+                LSHIFT,Z,   X,   C,   V,   L3B,   N,   M, ',', '.', '/',        RSHIFT,
+                LCTRL, LALT, LGUI,          SPACE,            MENU, RALT, RCTRL,  L1
+            ),
+        ),
+        "BT1": (
+            # layer 0
+            (
+                ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
+                TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
+                CAPS,  A,   L5S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
+                LSHIFT,Z,   X,   C,   V,   L3B,   N,   M, ',', '.', '/',        RSHIFT,
+                LCTRL, LALT, LGUI,          SPACE,            MENU, RALT, RCTRL,  L1
+            ),
+
+            # layer 1
+            (
+                '`',  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12, DEL,
+                ___, ___,  UP, ___, ___, ___, ___, ___, ___, ___,SUSPEND,___,___,___,
+                ___,LEFT,DOWN,RIGHT,___, ___, ___, ___, ___, ___, ___, ___,      ___,
+                ___, ___, ___, ___, ___,BOOT, ___,MACRO(1), ___, ___, UP,       ___,
+                ___, ___, ___,                ___,               LEFT, DOWN, RIGHT,  ___
+            ),
+        )
+    }
 
 # add default keymap to profiles
 default_keymap_count = len(keyboard.keymap)
@@ -154,9 +161,15 @@ def pairs_handler(dev, n):
     elif n == 2:
         dev.send_text('ifconfig')
 
+if my_keymap.macro_handler:
+    keyboard.macro_handler = my_keymap.macro_handler
+else:    
+    keyboard.macro_handler = macro_handler
 
-keyboard.macro_handler = macro_handler
-keyboard.pairs_handler = pairs_handler
+if my_keymap.pairs_handler:
+    keyboard.pairs_handler = my_keymap.pairs_handler    
+else:
+    keyboard.pairs_handler = pairs_handler
 
 # ESC(0)    1(1)   2(2)   3(3)   4(4)   5(5)   6(6)   7(7)   8(8)   9(9)   0(10)  -(11)  =(12)  BACKSPACE(13)
 # TAB(27)   Q(26)  W(25)  E(24)  R(23)  T(22)  Y(21)  U(20)  I(19)  O(18)  P(17)  [(16)  ](15)   \(14)
@@ -168,7 +181,10 @@ keyboard.pairs_handler = pairs_handler
 # 1. ls
 # 2. du
 # 3. ip
-keyboard.pairs = [{37, 30}, {31, 20}, {19, 17}, {35, 36}, {20, 19}]
+if my_keymap.pairs:
+    keyboard.pairs = my_keymap.pairs
+else:
+    keyboard.pairs = [{37, 30}, {31, 20}, {19, 17}, {35, 36}, {20, 19}]
 
 # keyboard.verbose = False
 
