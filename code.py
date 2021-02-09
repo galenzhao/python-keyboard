@@ -26,9 +26,9 @@ else:
         (
             ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
             TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
-            CAPS,  A, L5S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
+            CAPS,  A,   S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
             LSFT4, Z,   X,   C,   V, L3B,   N,   M, ',', '.', '/',         RSFT4,
-            LCTRL, LGUI, LALT,          SPACE,            RALT, MENU, RCTRL,  L1
+            LCTRL, LGUI, LALT,          SPACE,            RALT, MENU,  L1, RCTRL
         ),
 
         # layer 1
@@ -36,8 +36,8 @@ else:
             '`',  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12, DEL,
             ___, ___,  UP, ___, ___, ___, ___, ___, ___, ___,SUSPEND,___,___,___,
             ___,LEFT,DOWN,RIGHT,___, ___, ___, ___, ___, ___, ___, ___,      ___,
-            ___, ___, ___, ___, ___,BOOT, ___,MACRO(0), ___, ___, UP,       ___,
-            ___, ___, ___,                ___,               LEFT, DOWN, RIGHT,  ___
+            ___, ___, ___, ___, ___,BOOT, ___,MACRO(0), ___, ___, ___,       ___,
+            ___, ___, ___,                ___,               ___, ___, ___,  ___
         ),
 
         # layer 2
@@ -51,10 +51,10 @@ else:
 
         # layer 3
         (
-            BT_TOGGLE,BT1,BT2, BT3,BT4,BT5,BT6,BT7, BT8, BT9, BT0, VAL_RGB, RGB_VAL, ___,
-            RGB_MOD, ___, ___, ___, ___, ___,___,USB_TOGGLE,___,___,MACRO(4),MACRO(2),MACRO(3), ___,
+            BT_TOGGLE,BT1,BT2, BT3,BT4,BT5,BT6,BT7, BT8, BT9, BT0, ___, ___, ___,
+            RGB_MOD, ___, ___, ___, ___, ___,___,USB_TOGGLE,___,___,___,___,___, ___,
             RGB_TOGGLE,HUE_RGB,RGB_HUE,SAT_RGB,RGB_SAT,___,___,___,___,___,___,___,      ___,
-            ___, ___, ___, ___, ___, ___, ___, ___,___,___, ___,           ___,
+            ___, ___, ___, ___, ___, ___, ___, ___,VAL_RGB,RGB_VAL, ___,           ___,
             ___, ___, ___,                ___,               ___, ___, ___,  ___
         ),
 
@@ -77,6 +77,7 @@ else:
         ),
     )
 
+
 # Use different keymaps on different connections
 # Valid keys are "USB" and "BT0"-"BT9"
 # Connection not in this map will use default keymap defined above.
@@ -85,24 +86,14 @@ if my_keymap.profiles and len(my_keymap.profiles) > 0:
 else:    
     keyboard.profiles = {
         # For example, BT8 is connected to a Mac
-        "USB": (
+        "BT8": (
             # layer 0
             (
                 ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
                 TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
-                CAPS,  A,   L5S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
-                LSHIFT,Z,   X,   C,   V,   L3B,   N,   M, ',', '.', '/',        RSHIFT,
-                LCTRL, LALT, LGUI,          SPACE,            MENU, RALT, RCTRL,  L1
-            ),
-        ),
-        "BT1": (
-            # layer 0
-            (
-                ESC,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, '-', '=', BACKSPACE,
-                TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
-                CAPS,  A,   L5S, L2D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
-                LSHIFT,Z,   X,   C,   V,   L3B,   N,   M, ',', '.', '/',        RSHIFT,
-                LCTRL, LALT, LGUI,          SPACE,            MENU, RALT, RCTRL,  L1
+                CAPS,  A,   S,   D,   F,   G,   H,   J,   K,   L, SCC, '"',    ENTER,
+                LSHIFT,Z,   X,   C,   V,   B,   N,   M, ',', '.', '/',        RSHIFT,
+                LCTRL, LALT, LGUI,          SPACE,            MENU, RALT,  L1, RCTRL
             ),
 
             # layer 1
@@ -110,11 +101,12 @@ else:
                 '`',  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12, DEL,
                 ___, ___,  UP, ___, ___, ___, ___, ___, ___, ___,SUSPEND,___,___,___,
                 ___,LEFT,DOWN,RIGHT,___, ___, ___, ___, ___, ___, ___, ___,      ___,
-                ___, ___, ___, ___, ___,BOOT, ___,MACRO(1), ___, ___, UP,       ___,
-                ___, ___, ___,                ___,               LEFT, DOWN, RIGHT,  ___
+                ___, ___, ___, ___, ___,BOOT, ___,MACRO(1), ___, ___, ___,       ___,
+                ___, ___, ___,                ___,               ___, ___, ___,  ___
             ),
         )
     }
+
 
 # add default keymap to profiles
 default_keymap_count = len(keyboard.keymap)
@@ -135,31 +127,15 @@ for i in keyboard.profiles.keys():
 
 
 def macro_handler(dev, n, is_down):
-    if n == 2:
-        if is_down:
-            dev.backlight.set_brightness(0)
-
-    elif n == 3:
-        if is_down:
-            dev.backlight.set_brightness(255)
-
-    elif n == 4:
-        if is_down:
-            print('keyboard.battery.level #{}'.format(keyboard.battery.level))
-
-    #if is_down:
-    #    dev.send_text('You pressed macro #{}\n'.format(n))
-    #else:
-    #    dev.send_text('You released macro #{}\n'.format(n))
+    if is_down:
+        dev.send_text('You pressed macro #{}\n'.format(n))
+    else:
+        dev.send_text('You released macro #{}\n'.format(n))
 
 def pairs_handler(dev, n):
-    #dev.send_text('You just triggered pair keys #{}\n'.format(n))
-    if n == 0:
-        dev.send_text('ls -alh\n')
-    elif n == 1:
-        dev.send_text('du -sh ./*\n')
-    elif n == 2:
-        dev.send_text('ifconfig')
+    dev.send_text('You just triggered pair keys #{}\n'.format(n))
+
+
 
 if my_keymap.macro_handler:
     keyboard.macro_handler = my_keymap.macro_handler
@@ -184,7 +160,7 @@ else:
 if my_keymap.pairs:
     keyboard.pairs = my_keymap.pairs
 else:
-    keyboard.pairs = [{37, 30}, {31, 20}, {19, 17}, {35, 36}, {20, 19}]
+    keyboard.pairs = [{35, 36}, {20, 19}]
 
 # keyboard.verbose = False
 

@@ -193,7 +193,14 @@ class Keyboard:
             else:
                 desc += " / "
                 t1 = matrix.get_keyup_time(key)
-            dt = matrix.ms(t1 - t0)
+
+            dt = 0    
+            try:    
+                dt = matrix.ms(t1 - t0)
+
+            except OverflowError:            
+                print('An exception flew by!')                
+
             t0 = t1
             t.append(dt)
 
